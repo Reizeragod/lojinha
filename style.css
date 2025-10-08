@@ -1,0 +1,42 @@
+/* style.css */
+
+/* Definições de cor primária para um toque mais sofisticado */
+:root {
+    --bs-primary: #333333;   /* Preto/Cinza Escuro elegante */
+    --bs-secondary: #AAAAAA; /* Cinza claro */
+    --bs-body-color: #333333;
+}
+
+/* Sobrescreve as cores padrão do Bootstrap para dar a "cara" da marca */
+.btn-primary {
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: #555555;
+    --bs-btn-hover-border-color: #555555;
+}
+
+/* Estilo para a imagem de fundo do header (Hero) */
+header {
+    min-height: 80vh; 
+    color: white;
+    /* Garante que o texto fique legível sobre a imagem */
+    --bs-text-opacity: 1;
+}
+
+.text-shadow-lg {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Efeito hover nos cards de produto */
+.product-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação sutil */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}

@@ -1,144 +1,423 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Style Hub - Moda e Estilo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-    </style>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Hub - Moda e Estilo</title>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-uppercase" href="index.html">Style Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="colecoes.html">Coleções</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sobre">Sobre Nós</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contato">Contato</a>
-                    </li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="nav-link" href="carrinho.html">
-                            <i class="fas fa-shopping-bag"></i> Carrinho (<span id="carrinhoContador">0</span>)
-                        </a>
-                    </li>
-                </ul>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-50">
+
+    <nav id="navbar" class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a class="text-2xl font-extrabold text-gray-900 tracking-wider uppercase" href="#">Style Hub</a>
+                
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#produtos" class="text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Início</a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Coleções</a>
+                    <a href="#sobre" class="text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Sobre Nós</a>
+                    <a href="#contato" class="text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Contato</a>
+
+                    <a href="#" id="cart-link" class="bg-indigo-600 text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition duration-150 ease-in-out flex items-center shadow-lg">
+                        <i class="fas fa-shopping-bag mr-2"></i> Carrinho (<span id="carrinhoContador">0</span>)
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#produtos" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Início</a>
+                <a href="#" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Coleções</a>
+                <a href="#sobre" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Sobre Nós</a>
+                <a href="#contato" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Contato</a>
+                <a href="#" id="cart-link-mobile" class="block text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">
+                    <i class="fas fa-shopping-bag mr-2"></i> Carrinho (<span id="carrinhoContadorMobile">0</span>)
+                </a>
             </div>
         </div>
     </nav>
 
-<header class="hero-banner d-flex align-items-center justify-content-center text-center text-white" 
-        style="background: url('placeholder-fashion.jpg') center/cover no-repeat; height: 90vh; position: relative;">
+    <header class="hero-banner flex items-center justify-center text-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
-    <div style="background-color: rgba(0,0,0,0.5); position: absolute; inset: 0;"></div>
+        <div class="relative max-w-4xl px-4 py-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight leading-tight">COLEÇÃO PRIMAVERA/VERÃO</h1>
+            <p class="text-xl text-indigo-100 mb-8">Descubra as tendências que vão colorir sua estação. <br> Elegância e conforto em cada peça.</p>
+            <a href="#" class="inline-block bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg uppercase hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-xl">Ver Lançamentos</a>
+        </div>
+    </header>
 
-    <div class="hero-content position-relative">
-        <h1 class="display-3 fw-bold mb-4">COLEÇÃO PRIMAVERA/VERÃO</h1>
-        <p class="lead mb-5">Descubra as tendências que vão colorir sua estação. <br> Elegância e conforto em cada peça.</p>
-        <a href="colecoes.html" class="btn btn-light btn-lg px-5 py-3 text-uppercase fw-bold">Ver Lançamentos</a>
-    </div>
-</header>
+    <section id="produtos" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-center text-4xl font-bold text-gray-800 mb-12">Destaques da Semana</h2>
 
-    <section id="produtos" class="container my-5 py-5">
-        <h2 class="text-center mb-5 display-6">Destaques da Semana</h2>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm product-card">
-                    <img src="placeholder-prod1.jpg" class="card-img-top" alt="Vestido Floral Midi">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Vestido Floral Midi</h5>
-                        <p class="card-text text-muted mb-2">R$ 189,90</p>
-                        <span class="badge bg-primary">Novidade</span>
-                        <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart">Adicionar</button>
-                    </div>
+            <!-- Product 1 -->
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group"
+                 data-id="PROD001" data-name="Vestido Floral Midi" data-price="189.90">
+                <div class="relative overflow-hidden">
+                    <img src="vestido_floral.jpg" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="Vestido Floral Midi">
+                    <span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">Novidade</span>
+                </div>
+                <div class="p-6 text-center">
+                    <h5 class="text-xl font-semibold text-gray-800 mb-1">Vestido Floral Midi</h5>
+                    <p class="text-gray-500 mb-3 font-mono">R$ 189,90</p>
+                    <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                        <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                    </button>
                 </div>
             </div>
 
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm product-card">
-                    <img src="placeholder-prod2.jpg" class="card-img-top" alt="Calça Jeans Premium">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Calça Jeans Premium</h5>
-                        <p class="card-text text-muted mb-2">R$ 159,90</p>
-                        <span class="badge bg-danger">Mais Vendida</span>
-                        <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart">Adicionar</button>
-                    </div>
+            <!-- Product 2 -->
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group"
+                 data-id="PROD002" data-name="Calça Jeans Premium" data-price="159.90">
+                <div class="relative overflow-hidden">
+                    <img src="calca_jeans.jpg" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="Calça Jeans Premium">
+                    <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">Mais Vendida</span>
+                </div>
+                <div class="p-6 text-center">
+                    <h5 class="text-xl font-semibold text-gray-800 mb-1">Calça Jeans Premium</h5>
+                    <p class="text-gray-500 mb-3 font-mono">R$ 159,90</p>
+                    <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                        <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                    </button>
                 </div>
             </div>
 
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm product-card">
-                    <img src="placeholder-prod3.jpg" class="card-img-top" alt="Blusa de Linho Clássica">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Blusa de Linho Clássica</h5>
-                        <p class="card-text text-muted mb-2">R$ 99,90</p>
-                        <span class="badge bg-warning text-dark">Lançamento</span>
-                        <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart">Adicionar</button>
-                    </div>
+            <!-- Product 3 -->
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group"
+                 data-id="PROD003" data-name="Blusa de Linho Clássica" data-price="99.90">
+                <div class="relative overflow-hidden">
+                    <img src="blusa_linho.jpg" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="Blusa de Linho Clássica">
+                    <span class="absolute top-3 left-3 bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full shadow-md">Lançamento</span>
+                </div>
+                <div class="p-6 text-center">
+                    <h5 class="text-xl font-semibold text-gray-800 mb-1">Blusa de Linho Clássica</h5>
+                    <p class="text-gray-500 mb-3 font-mono">R$ 99,90</p>
+                    <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                        <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                    </button>
                 </div>
             </div>
-            
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm product-card">
-                    <img src="placeholder-prod4.jpg" class="card-img-top" alt="Jaqueta de Couro Eco">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Jaqueta de Couro Eco</h5>
-                        <p class="card-text text-muted mb-2">R$ 299,90</p>
-                        <span class="badge bg-success">Em Estoque</span>
-                        <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart">Adicionar</button>
-                    </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group"
+                 data-id="PROD004" data-name="Jaqueta de Couro Eco" data-price="299.90">
+                <div class="relative overflow-hidden">
+                    <img src="jaqueta_couro.jpg" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="Jaqueta de Couro Eco">
+                    <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">Em Estoque</span>
+                </div>
+                <div class="p-6 text-center">
+                    <h5 class="text-xl font-semibold text-gray-800 mb-1">Jaqueta de Couro Eco</h5>
+                    <p class="text-gray-500 mb-3 font-mono">R$ 299,90</p>
+                    <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                        <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                    </button>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="sobre" class="bg-light py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <h3 class="display-6 mb-3">Nossa História de Estilo</h3>
-                    <p class="lead">A Style Hub nasceu para testar minhas habilidades de HTML, CSS e JS..</p>
-                    <p>Isto é apenas um modelo de pagina.</p>
-                </div>
-                <div class="col-md-6">
-                    <img src="" class="img-fluid rounded shadow" alt="Foto da equipe Style Hub">
-                </div>
-            </div>
+    <section id="sobre" class="bg-gray-100 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-4xl font-bold text-gray-800 mb-6">Nossa História de Estilo</h3>
+            <p class="text-xl text-gray-600 mb-4 leading-relaxed">A Style Hub nasceu como um projeto para testar e aprimorar habilidades em desenvolvimento web, focando em design responsivo, usabilidade e integração de dados em tempo real. Nossa missão é simular uma experiência de compra moderna e eficiente.</p>
+            <p class="text-lg text-gray-500">Este é um modelo de página criado com foco em performance e estética profissional.</p>
         </div>
     </section>
 
-    <footer id="contato" class="bg-dark text-white-50 py-4">
-        <div class="container text-center">
-            <p class="mb-2">Fale Conosco: silva_mateus@ufms.br</p>
-            <div class="mb-3">
-                <a href="#" class="text-white-50 mx-2"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="#" class="text-white-50 mx-2"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="#" class="text-white-50 mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+    <footer id="contato" class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-4 text-lg">Fale Conosco: <a href="mailto:silva_mateus@ufms.br" class="text-indigo-400 hover:text-indigo-300 transition duration-200">silva_mateus@ufms.br</a></p>
+            
+            <div class="mb-6">
+                <a href="#" class="text-gray-400 hover:text-white mx-3 transition duration-200"><i class="fab fa-instagram fa-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white mx-3 transition duration-200"><i class="fab fa-facebook-f fa-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white mx-3 transition duration-200"><i class="fab fa-twitter fa-xl"></i></a>
             </div>
-            <p>&copy; 2025 Style Hub. Por Mateus Reis.</p>
+            
+            <p class="text-sm">&copy; 2025 Style Hub. Por Mateus Reis. Todos os direitos reservados.</p>
         </div>
     </footer>
+    
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-[100]">
+        <div class="bg-white rounded-lg p-6 w-11/12 max-w-lg shadow-2xl">
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">Seu Carrinho</h3>
+            <div id="modal-cart-content" class="text-gray-700 max-h-80 overflow-y-auto p-2 border rounded-md">
+                <p class="text-center text-gray-500">O carrinho está vazio.</p>
+            </div>
+            <div class="mt-4 pt-4 border-t flex justify-between items-center">
+                <p class="text-lg font-semibold">Total: <span id="modal-cart-total">R$ 0,00</span></p>
+                <button id="close-modal-button" class="bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg hover:bg-gray-300 transition">Fechar</button>
+            </div>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script> 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, query, addDoc, serverTimestamp, updateDoc, deleteDoc, getDoc, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        let db;
+        let auth;
+        let currentUserId = null;
+        let isAuthReady = false;
+
+        const cartCounter = document.getElementById('carrinhoContador');
+        const cartCounterMobile = document.getElementById('carrinhoContadorMobile');
+        const productElements = document.querySelectorAll('.product-card');
+        const cartModal = document.getElementById('cart-modal');
+        const cartLink = document.getElementById('cart-link');
+        const cartLinkMobile = document.getElementById('cart-link-mobile');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const modalContent = document.getElementById('modal-cart-content');
+        const modalTotal = document.getElementById('modal-cart-total');
+
+        function parsePrice(text) {
+            return parseFloat(text.replace('R$', '').replace('.', '').replace(',', '.').trim());
+        }
+
+        function formatCurrency(value) {
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        if (firebaseConfig) {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        currentUserId = user.uid;
+                    } else if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                        currentUserId = auth.currentUser.uid;
+                    } else {
+                        const anonymousUser = await signInAnonymously(auth);
+                        currentUserId = anonymousUser.user.uid;
+                    }
+                    isAuthReady = true;
+                    console.log('Firebase Auth Ready. User ID:', currentUserId);
+                    if (currentUserId) {
+                        setupCartListener();
+                        setupEventListeners();
+                    }
+                });
+            } catch (error) {
+                console.error("Erro ao inicializar Firebase:", error);
+                currentUserId = crypto.randomUUID();
+                isAuthReady = true;
+                setupEventListeners();
+                updateCartUI([]);
+            }
+        } else {
+            console.error("Configuração do Firebase não encontrada. O carrinho não será persistente.");
+            currentUserId = crypto.randomUUID();
+            isAuthReady = true;
+            setupEventListeners();
+            updateCartUI([]);
+        }
+
+        function getCartCollectionRef() {
+            const path = `/artifacts/${appId}/users/${currentUserId}/style_hub_cart`;
+            return collection(db, path);
+        }
+
+
+        function setupCartListener() {
+            if (!db || !currentUserId || !isAuthReady) return;
+
+            const cartRef = getCartCollectionRef();
+
+            onSnapshot(cartRef, (snapshot) => {
+                const cartItems = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                updateCartUI(cartItems);
+            }, (error) => {
+                console.error("Erro ao ouvir o carrinho em tempo real:", error);
+            });
+        }
+
+        function updateCartUI(cartItems) {
+            const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const totalValue = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCounter.textContent = totalQuantity;
+            cartCounterMobile.textContent = totalQuantity;
+            modalTotal.textContent = formatCurrency(totalValue);
+            
+            modalContent.innerHTML = '';
+
+            if (cartItems.length === 0) {
+                modalContent.innerHTML = '<p class="text-center text-gray-500 py-4">Seu carrinho está vazio. Adicione itens para começar a comprar!</p>';
+                return;
+            }
+
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex justify-between items-center py-2 border-b last:border-b-0';
+                itemDiv.innerHTML = `
+                    <div class="flex-grow">
+                        <p class="font-medium text-gray-900">${item.name}</p>
+                        <p class="text-sm text-gray-500">${formatCurrency(item.price)} x ${item.quantity}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button data-id="${item.documentId}" data-action="decrease" class="text-gray-600 hover:text-red-500 text-lg transition">-</button>
+                        <span class="font-semibold text-gray-800">${item.quantity}</span>
+                        <button data-id="${item.documentId}" data-action="increase" class="text-gray-600 hover:text-green-500 text-lg transition">+</button>
+                    </div>
+                `;
+                modalContent.appendChild(itemDiv);
+            });
+        }
+
+        async function addToCart(productId, name, price) {
+            if (!db || !currentUserId || !isAuthReady) {
+                console.error("Erro: Firebase não inicializado ou usuário não autenticado.");
+                return;
+            }
+
+            const cartItemDocRef = doc(getCartCollectionRef(), productId);
+
+            try {
+                await runTransaction(db, async (transaction) => {
+                    const docSnapshot = await transaction.get(cartItemDocRef);
+
+                    if (docSnapshot.exists()) {
+                        const newQuantity = docSnapshot.data().quantity + 1;
+                        transaction.update(cartItemDocRef, { 
+                            quantity: newQuantity,
+                            updatedAt: serverTimestamp()
+                        });
+                    } else {
+                        transaction.set(cartItemDocRef, {
+                            documentId: productId, 
+                            name: name,
+                            price: price,
+                            quantity: 1,
+                            createdAt: serverTimestamp(),
+                            updatedAt: serverTimestamp()
+                        });
+                    }
+                    console.log(`Produto ${name} adicionado ao carrinho.`);
+                });
+            } catch (e) {
+                console.error("Falha na transação do carrinho: ", e);
+            }
+        }
+
+        async function updateCartItemQuantity(docId, action) {
+             if (!db || !currentUserId || !isAuthReady) return;
+
+            const cartItemDocRef = doc(getCartCollectionRef(), docId);
+
+            try {
+                await runTransaction(db, async (transaction) => {
+                    const docSnapshot = await transaction.get(cartItemDocRef);
+
+                    if (!docSnapshot.exists()) {
+                        console.error("Documento do carrinho não encontrado.");
+                        return;
+                    }
+
+                    const currentQuantity = docSnapshot.data().quantity;
+                    let newQuantity = currentQuantity;
+
+                    if (action === 'increase') {
+                        newQuantity = currentQuantity + 1;
+                        transaction.update(cartItemDocRef, { quantity: newQuantity, updatedAt: serverTimestamp() });
+                    } else if (action === 'decrease') {
+                        if (currentQuantity > 1) {
+                            newQuantity = currentQuantity - 1;
+                            transaction.update(cartItemDocRef, { quantity: newQuantity, updatedAt: serverTimestamp() });
+                        } else {
+                            transaction.delete(cartItemDocRef);
+                        }
+                    }
+                    console.log(`Quantidade atualizada para ${newQuantity} para ${docId}`);
+                });
+            } catch (e) {
+                console.error("Falha ao atualizar quantidade do carrinho: ", e);
+            }
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('[data-id]').forEach(card => {
+                const button = card.querySelector('.add-to-cart');
+                if(button) {
+                    button.addEventListener('click', () => {
+                        const productId = card.dataset.id;
+                        const name = card.dataset.name;
+                        const price = parseFloat(card.dataset.price);
+
+                        addToCart(productId, name, price);
+                    });
+                }
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            [cartLink, cartLinkMobile].forEach(link => {
+                if(link) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        cartModal.classList.remove('hidden');
+                        cartModal.classList.add('flex');
+                    });
+                }
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                cartModal.classList.add('hidden');
+                cartModal.classList.remove('flex');
+            });
+
+            cartModal.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.classList.add('hidden');
+                    cartModal.classList.remove('flex');
+                }
+            });
+
+            modalContent.addEventListener('click', (e) => {
+                const target = e.target;
+                const docId = target.dataset.id;
+                const action = target.dataset.action;
+
+                if (docId && (action === 'increase' || action === 'decrease')) {
+                    updateCartItemQuantity(docId, action);
+                }
+            });
+        }
+    </script>
 </body>
-
 </html>

@@ -1,233 +1,160 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Style Hub - Nossas Coleções</title>
-    <!-- Links de Estilo (Mantenha os mesmos links do index.html) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Estilos de Ajuste -->
-    <style>
-        .product-card {
-            /* Garante que os cards tenham uma altura mínima para evitar Cumulative Layout Shift (CLS) ao ordenar */
-            min-height: 450px; 
-        }
-        .product-card img {
-            height: 250px; /* Altura fixa para as imagens do produto */
-            object-fit: cover;
-        }
-        .price-range-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coleções - Style Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+<body class="bg-gray-50 font-inter">
 
-    <!-- Navegação (Navbar) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-uppercase" href="index.html">Style Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="colecoes.html">Coleções</a>
-                    </li>
-                    <!-- Link do Carrinho ATUALIZADO para a página de checkout -->
-                    <li class="nav-item ms-lg-3">
-                        <a class="nav-link" href="carrinho.html">
-                            <i class="fas fa-shopping-bag"></i> Carrinho (<span id="carrinhoContador">0</span>) 
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Conteúdo Principal: Layout de Loja de Departamento (Sidebar + Produtos) -->
-    <div class="container my-5">
-        <h1 class="mb-4 display-5 text-center">Toda a Nossa Coleção</h1>
-        
-        <div class="row">
-            
-            <!-- Coluna de Filtros/Categorias (Sidebar) -->
-            <div class="col-lg-3 mb-4">
-                <div class="card shadow-sm p-3">
-                    <h5 class="card-title mb-3">Filtrar por Categoria</h5>
-                    <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action active">Todos os Produtos</a>
-                        <a href="#" class="list-group-item list-group-item-action">Moda Feminina (24)</a>
-                        <a href="#" class="list-group-item list-group-item-action">Moda Masculina (18)</a>
-                        <a href="#" class="list-group-item list-group-item-action">Acessórios (12)</a>
-                        <a href="#" class="list-group-item list-group-item-action">Promoções</a>
-                    </div>
-                    
-                    <h5 class="card-title mt-4 mb-3">Filtrar por Preço</h5>
-                    <!-- Input Range: ID 'priceRange' e 'priceDisplay' essenciais para colecoes.js -->
-                    <input type="range" class="form-range" id="priceRange" value="5000" min="0" max="5000">
-                    <div class="price-range-container">
-                        <p class="small text-muted mb-0">R$ 0</p>
-                        <p class="small text-muted mb-0" id="priceDisplay">R$ 5000</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Coluna de Listagem de Produtos -->
-            <div class="col-lg-9">
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <p class="text-muted">Mostrando 1–8 de 54 resultados.</p>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-md-end">
-                        <!-- Select de Ordenação: ID 'sortSelect' essencial para colecoes.js -->
-                        <select class="form-select form-select-sm w-auto" id="sortSelect">
-                            <option value="default" selected>Ordenar por Popularidade</option>
-                            <option value="price-asc">Ordenar por Preço (menor)</option>
-                            <option value="price-desc">Ordenar por Preço (maior)</option>
-                            <option value="novelty">Ordenar por Novidade</option>
-                        </select>
-                    </div>
-                </div>
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="text-2xl font-extrabold text-gray-900 uppercase tracking-wider">Style Hub</a>
+      <div class="space-x-6 hidden md:flex items-center">
+        <a href="index.html" class="hover:text-indigo-600 text-gray-600">Início</a>
+        <a href="colecoes.html" class="text-indigo-600 font-semibold border-b-2 border-indigo-600">Coleções</a>
 
-                <!-- Grid de Produtos - ID 'productGrid' essencial para colecoes.js -->
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" id="productGrid">
-                    
-                    <!-- ATENÇÃO: Cada produto deve ter o atributo data-price e a classe add-to-cart-collection -->
+        <a href="carrinho.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full font-medium hover:bg-indigo-700 transition">
+          <i class="fas fa-shopping-bag mr-2"></i> Carrinho (<span id="carrinhoContador">0</span>)
+        </a>
+      </div>
+    </div>
+  </nav>
 
-                    <!-- Produto 1: Saia Plissada | Preço: 129.90 -->
-                    <div class="col" data-price="129.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod5.jpg" class="card-img-top" alt="Saia Plissada">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Saia Plissada Verão</h5>
-                                <p class="card-text text-muted mb-2">R$ 129,90</p>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Produto 2: Camisa Social | Preço: 149.90 -->
-                    <div class="col" data-price="149.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod6.jpg" class="card-img-top" alt="Camisa Social">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Camisa Social Slim</h5>
-                                <p class="card-text text-muted mb-2">R$ 149,90</p>
-                                <span class="badge bg-secondary">Masculino</span>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Produto 3: Tênis Casual | Preço: 219.90 -->
-                    <div class="col" data-price="219.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod7.jpg" class="card-img-top" alt="Tênis Casual">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Tênis Casual Branco</h5>
-                                <p class="card-text text-muted mb-2">R$ 219,90</p>
-                                <span class="badge bg-warning text-dark">Lançamento</span>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Produto 4: Calça Cargo | Preço: 179.90 -->
-                    <div class="col" data-price="179.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod8.jpg" class="card-img-top" alt="Calça Cargo">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Calça Cargo Algodão</h5>
-                                <p class="card-text text-muted mb-2">R$ 179,90</p>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
+  <!-- Header/Hero Section -->
+  <header class="hero-banner flex items-center justify-center text-center relative h-64" style="background-image: url('banner_primavera.jpg'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative max-w-4xl px-4 py-20">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight leading-tight">Coleções Exclusivas</h1>
+      <p class="text-xl text-indigo-100">20 peças selecionadas para você brilhar nesta estação.</p>
+    </div>
+  </header>
 
-                    <!-- Produto 5: Vestido Floral (do index) | Preço: 189.90 -->
-                    <div class="col" data-price="189.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod1.jpg" class="card-img-top" alt="Vestido Floral">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Vestido Floral Midi</h5>
-                                <p class="card-text text-muted mb-2">R$ 189,90</p>
-                                <span class="badge bg-primary text-white">Nova Coleção</span>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 6: Calça Jeans (do index) | Preço: 159.90 -->
-                    <div class="col" data-price="159.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod2.jpg" class="card-img-top" alt="Calça Jeans Skinny">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Calça Jeans Premium</h5>
-                                <p class="card-text text-muted mb-2">R$ 159,90</p>
-                                <span class="badge bg-danger">Mais Vendida</span>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 7: Blusa de Linho (do index) | Preço: 99.90 -->
-                    <div class="col" data-price="99.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod3.jpg" class="card-img-top" alt="Blusa de Linho">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Blusa de Linho Clássica</h5>
-                                <p class="card-text text-muted mb-2">R$ 99,90</p>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Produto 8: Jaqueta de Couro (do index) | Preço: 299.90 -->
-                    <div class="col" data-price="299.90">
-                        <div class="card h-100 border-0 shadow-sm product-card">
-                            <img src="placeholder-prod4.jpg" class="card-img-top" alt="Jaqueta de Couro">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Jaqueta de Couro Eco</h5>
-                                <p class="card-text text-muted mb-2">R$ 299,90</p>
-                                <span class="badge bg-success">Últimas Peças</span>
-                                <button class="btn btn-outline-dark btn-sm mt-3 add-to-cart-collection">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <!-- Paginação (apenas visual) -->
-                <nav class="mt-5 d-flex justify-content-center">
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Próxima</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+  <!-- Main Content - Catalog and Filters -->
+  <main class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
+      <input
+        id="search"
+        type="text"
+        placeholder="Buscar produto..."
+        class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+      />
+      <select
+        id="filter"
+        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+      >
+        <option value="all">Todas categorias</option>
+        <option value="Roupas">Roupas</option>
+        <option value="Acessórios">Acessórios</option>
+        <option value="Calçados">Calçados</option>
+      </select>
+      <select
+        id="price"
+        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+      >
+        <option value="all">Todos preços</option>
+        <option value="low">Menos de R$ 200</option>
+        <option value="mid">R$ 200 - R$ 400</option>
+        <option value="high">Mais de R$ 400</option>
+      </select>
     </div>
 
-    <!-- Rodapé -->
-    <footer id="contato" class="bg-dark text-white-50 py-4 mt-5">
-        <div class="container text-center"><p>&copy; 2025 Style Hub. Todos os direitos reservados.</p></div>
-    </footer>
+    <p id="result-count" class="text-gray-600 text-center mb-6"></p>
+    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+  </main>
 
-    <!-- Scripts do Bootstrap e o script para esta página -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- O colecoes.js é obrigatório para que a ordenação, filtro e o carrinho funcionem nesta página -->
-    <script src="colecoes.js"></script>
+  <footer class="bg-gray-900 text-gray-400 text-center py-8">
+    <p>&copy; 2025 Style Hub.</p>
+  </footer>
+
+  <script type="module">
+    import '../js/cart.js'; 
+
+    const produtos = [
+      // --- Itens Femininos ---
+      { id: 'F01', name: 'Vestido Midi Floral', price: 289.90, category: 'Roupas', image: 'img/produto1.jpg' },
+      { id: 'F02', name: 'Calça Wide Leg Rosa', price: 179.50, category: 'Roupas', image: 'img/produto2.jpg' },
+      { id: 'F03', name: 'Sandália Anabela Verão', price: 159.00, category: 'Calçados', image: 'img/produto3.jpg' },
+      { id: 'F04', name: 'Blusa Seda Off-White', price: 99.90, category: 'Roupas', image: 'img/produto4.jpg' },
+      { id: 'F05', name: 'Bolsa Tiracolo Couro', price: 349.99, category: 'Acessórios', image: 'img/produto5.jpg' },
+      { id: 'F06', name: 'Jaqueta Jeans Cropped', price: 219.00, category: 'Roupas', image: 'img/produto6.jpg' },
+      { id: 'F07', name: 'Brinco Argola Ouro', price: 69.90, category: 'Acessórios', image: 'img/produto7.jpg' },
+      { id: 'F08', name: 'Saia Plissada Chiffon', price: 145.00, category: 'Roupas', image: 'img/produto8.jpg' },
+      { id: 'F09', name: 'Tênis Casual Branco', price: 199.90, category: 'Calçados', image: 'img/produto9.jpg' },
+      { id: 'F10', name: 'Cachecol de Linho Azul', price: 75.00, category: 'Acessórios', image: 'img/produto10.jpg' },
+      
+      // --- Itens Masculinos ---
+      { id: 'M01', name: 'Camisa Linho Slim Fit', price: 129.90, category: 'Roupas', image: 'img/produto11.jpg' },
+      { id: 'M02', name: 'Tênis Esportivo Runner', price: 319.90, category: 'Calçados', image: 'img/produto12.jpg' },
+      { id: 'M03', name: 'Calça Chino Verde Militar', price: 189.90, category: 'Roupas', image: 'img/produto13.jpg' },
+      { id: 'M04', name: 'Relógio Cronógrafo Couro', price: 549.00, category: 'Acessórios', image: 'img/produto14.jpg' },
+      { id: 'M05', name: 'Polo Piquet Clássica', price: 89.90, category: 'Roupas', image: 'img/produto15.jpg' },
+      { id: 'M06', name: 'Mocassim de Camurça', price: 239.00, category: 'Calçados', image: 'img/produto16.jpg' },
+      { id: 'M07', name: 'Cinto de Couro Fivela', price: 79.90, category: 'Acessórios', image: 'img/produto17.jpg' },
+      { id: 'M08', name: 'Bermuda de Sarja Azul', price: 109.00, category: 'Roupas', image: 'img/produto18.jpg' },
+      { id: 'M09', name: 'Óculos de Sol Aviador', price: 165.00, category: 'Acessórios', image: 'img/produto19.jpg' },
+      { id: 'M10', name: 'Blazer Casual Algodão', price: 399.90, category: 'Roupas', image: 'img/produto20.jpg' },
+    ];
+
+    const catalogo = document.getElementById('catalogo');
+    const search = document.getElementById('search');
+    const filter = document.getElementById('filter');
+    const price = document.getElementById('price');
+    const resultCount = document.getElementById('result-count');
+
+    function render() {
+      const term = search.value.toLowerCase();
+      const cat = filter.value;
+      const pr = price.value;
+
+      const filtrados = produtos.filter(p => {
+        const matchNome = p.name.toLowerCase().includes(term);
+        const matchCat = cat === 'all' || p.category === cat;
+        const matchPreco =
+          pr === 'all' ||
+          (pr === 'low' && p.price < 200) ||
+          (pr === 'mid' && p.price >= 200 && p.price <= 400) ||
+          (pr === 'high' && p.price > 400);
+        return matchNome && matchCat && matchPreco;
+      });
+
+      resultCount.textContent = `${filtrados.length} produto${filtrados.length !== 1 ? 's' : ''} encontrado${filtrados.length !== 1 ? 's' : ''}`;
+
+      catalogo.innerHTML = filtrados.map(p => `
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group opacity-0 translate-y-6"
+          data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">
+          <div class="relative overflow-hidden">
+            <img src="${p.image}" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="${p.name}">
+            <span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">${p.category}</span>
+          </div>
+          <div class="p-6 text-center">
+            <h5 class="text-xl font-semibold text-gray-800 mb-1">${p.name}</h5>
+            <p class="text-gray-500 mb-3 font-mono">R$ ${p.price.toFixed(2)}</p>
+            <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+              <i class="fas fa-cart-plus mr-2"></i> Adicionar
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      // Animação suave nos cards
+      requestAnimationFrame(() => {
+        document.querySelectorAll('#catalogo > div').forEach((el, i) => {
+          setTimeout(() => {
+            el.classList.remove('opacity-0', 'translate-y-6');
+            el.classList.add('opacity-100', 'translate-y-0', 'transition-all', 'duration-700');
+          }, i * 50);
+        });
+      });
+    }
+
+    render();
+    search.addEventListener('input', render);
+    filter.addEventListener('change', render);
+    price.addEventListener('change', render);
+  </script>
+
 </body>
 </html>

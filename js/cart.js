@@ -1,4 +1,3 @@
-// js/cart.js
 const CART_KEY = 'stylehub_cart';
 let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
@@ -6,7 +5,6 @@ const cartCounters = document.querySelectorAll('#carrinhoContador');
 const cartContainer = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
 
-/* Toast Notification */
 function showToast(message) {
   const toast = document.createElement('div');
   toast.className = `fixed bottom-6 right-6 bg-gray-900 text-white px-6 py-3 rounded-xl shadow-lg opacity-0 translate-y-4 transition-all duration-300 z-[9999]`;

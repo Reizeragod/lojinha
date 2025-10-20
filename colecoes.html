@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coleções - Style Hub</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -15,7 +16,6 @@
       <div class="space-x-6 hidden md:flex items-center">
         <a href="index.html" class="hover:text-indigo-600 text-gray-600">Início</a>
         <a href="colecoes.html" class="text-indigo-600 font-semibold border-b-2 border-indigo-600">Coleções</a>
-
         <a href="carrinho.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full font-medium hover:bg-indigo-700 transition">
           <i class="fas fa-shopping-bag mr-2"></i> Carrinho (<span id="carrinhoContador">0</span>)
         </a>
@@ -23,37 +23,27 @@
     </div>
   </nav>
 
-  <!-- Header/Hero Section -->
-  <header class="hero-banner flex items-center justify-center text-center relative h-64" style="background-image: url('banner_primavera.jpg'); background-size: cover; background-position: center;">
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <div class="relative max-w-4xl px-4 py-20">
-      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight leading-tight">Coleções Exclusivas</h1>
+  <header class="relative flex items-center justify-center text-center h-72 bg-fixed" style="background-image: url('banner_primavera.jpg'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    <div class="relative z-10 text-white px-6">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fadeIn">Coleções Exclusivas</h1>
       <p class="text-xl text-indigo-100">20 peças selecionadas para você brilhar nesta estação.</p>
     </div>
   </header>
 
-  <!-- Main Content - Catalog and Filters -->
-  <main class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <main class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
-      <input
-        id="search"
-        type="text"
-        placeholder="Buscar produto..."
-        class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-      />
-      <select
-        id="filter"
-        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-      >
+      <input id="search" type="text" placeholder="Buscar produto..."
+        class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm" />
+      <select id="filter"
+        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm">
         <option value="all">Todas categorias</option>
         <option value="Roupas">Roupas</option>
         <option value="Acessórios">Acessórios</option>
         <option value="Calçados">Calçados</option>
       </select>
-      <select
-        id="price"
-        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-      >
+      <select id="price"
+        class="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm">
         <option value="all">Todos preços</option>
         <option value="low">Menos de R$ 200</option>
         <option value="mid">R$ 200 - R$ 400</option>
@@ -61,19 +51,17 @@
       </select>
     </div>
 
-    <p id="result-count" class="text-gray-600 text-center mb-6"></p>
-    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    <p id="result-count" class="text-gray-600 text-center mb-10 text-lg"></p>
+
+    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10"></div>
   </main>
 
-  <footer class="bg-gray-900 text-gray-400 text-center py-8">
-    <p>&copy; 2025 Style Hub.</p>
+  <footer class="bg-gray-900 text-gray-400 text-center py-10 mt-24 shadow-inner">
+    <p>&copy; 2025 Style Hub — Desenvolvido com 💜 por Mateus Reis</p>
   </footer>
 
-  <script type="module">
-    import '../js/cart.js'; 
-
+  <script>
     const produtos = [
-      // --- Itens Femininos ---
       { id: 'F01', name: 'Vestido Midi Floral', price: 289.90, category: 'Roupas', image: 'img/produto1.jpg' },
       { id: 'F02', name: 'Calça Wide Leg Rosa', price: 179.50, category: 'Roupas', image: 'img/produto2.jpg' },
       { id: 'F03', name: 'Sandália Anabela Verão', price: 159.00, category: 'Calçados', image: 'img/produto3.jpg' },
@@ -84,8 +72,6 @@
       { id: 'F08', name: 'Saia Plissada Chiffon', price: 145.00, category: 'Roupas', image: 'img/produto8.jpg' },
       { id: 'F09', name: 'Tênis Casual Branco', price: 199.90, category: 'Calçados', image: 'img/produto9.jpg' },
       { id: 'F10', name: 'Cachecol de Linho Azul', price: 75.00, category: 'Acessórios', image: 'img/produto10.jpg' },
-      
-      // --- Itens Masculinos ---
       { id: 'M01', name: 'Camisa Linho Slim Fit', price: 129.90, category: 'Roupas', image: 'img/produto11.jpg' },
       { id: 'M02', name: 'Tênis Esportivo Runner', price: 319.90, category: 'Calçados', image: 'img/produto12.jpg' },
       { id: 'M03', name: 'Calça Chino Verde Militar', price: 189.90, category: 'Roupas', image: 'img/produto13.jpg' },
@@ -123,8 +109,8 @@
       resultCount.textContent = `${filtrados.length} produto${filtrados.length !== 1 ? 's' : ''} encontrado${filtrados.length !== 1 ? 's' : ''}`;
 
       catalogo.innerHTML = filtrados.map(p => `
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group opacity-0 translate-y-6"
-          data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">
+        <div class="bg-white border border-gray-100 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group opacity-0 translate-y-6"
+          data-id="${p.id}">
           <div class="relative overflow-hidden">
             <img src="${p.image}" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="${p.name}">
             <span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">${p.category}</span>
@@ -132,14 +118,13 @@
           <div class="p-6 text-center">
             <h5 class="text-xl font-semibold text-gray-800 mb-1">${p.name}</h5>
             <p class="text-gray-500 mb-3 font-mono">R$ ${p.price.toFixed(2)}</p>
-            <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+            <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition">
               <i class="fas fa-cart-plus mr-2"></i> Adicionar
             </button>
           </div>
         </div>
       `).join('');
 
-      // Animação suave nos cards
       requestAnimationFrame(() => {
         document.querySelectorAll('#catalogo > div').forEach((el, i) => {
           setTimeout(() => {
@@ -156,5 +141,9 @@
     price.addEventListener('change', render);
   </script>
 
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeIn { animation: fadeIn 1s ease-out; }
+  </style>
 </body>
 </html>

@@ -52,94 +52,15 @@
     </div>
 
     <p id="result-count" class="text-gray-600 text-center mb-10 text-lg"></p>
-
-    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10"></div>
+    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10"></div>
   </main>
 
   <footer class="bg-gray-900 text-gray-400 text-center py-10 mt-24 shadow-inner">
     <p>&copy; 2025 Style Hub — Desenvolvido com 💜 por Mateus Reis</p>
   </footer>
 
-  <script>
-    const produtos = [
-      { id: 'F01', name: 'Vestido Midi Floral', price: 289.90, category: 'Roupas', image: 'img/produto1.jpg' },
-      { id: 'F02', name: 'Calça Wide Leg Rosa', price: 179.50, category: 'Roupas', image: 'img/produto2.jpg' },
-      { id: 'F03', name: 'Sandália Anabela Verão', price: 159.00, category: 'Calçados', image: 'img/produto3.jpg' },
-      { id: 'F04', name: 'Blusa Seda Off-White', price: 99.90, category: 'Roupas', image: 'img/produto4.jpg' },
-      { id: 'F05', name: 'Bolsa Tiracolo Couro', price: 349.99, category: 'Acessórios', image: 'img/produto5.jpg' },
-      { id: 'F06', name: 'Jaqueta Jeans Cropped', price: 219.00, category: 'Roupas', image: 'img/produto6.jpg' },
-      { id: 'F07', name: 'Brinco Argola Ouro', price: 69.90, category: 'Acessórios', image: 'img/produto7.jpg' },
-      { id: 'F08', name: 'Saia Plissada Chiffon', price: 145.00, category: 'Roupas', image: 'img/produto8.jpg' },
-      { id: 'F09', name: 'Tênis Casual Branco', price: 199.90, category: 'Calçados', image: 'img/produto9.jpg' },
-      { id: 'F10', name: 'Cachecol de Linho Azul', price: 75.00, category: 'Acessórios', image: 'img/produto10.jpg' },
-      { id: 'M01', name: 'Camisa Linho Slim Fit', price: 129.90, category: 'Roupas', image: 'img/produto11.jpg' },
-      { id: 'M02', name: 'Tênis Esportivo Runner', price: 319.90, category: 'Calçados', image: 'img/produto12.jpg' },
-      { id: 'M03', name: 'Calça Chino Verde Militar', price: 189.90, category: 'Roupas', image: 'img/produto13.jpg' },
-      { id: 'M04', name: 'Relógio Cronógrafo Couro', price: 549.00, category: 'Acessórios', image: 'img/produto14.jpg' },
-      { id: 'M05', name: 'Polo Piquet Clássica', price: 89.90, category: 'Roupas', image: 'img/produto15.jpg' },
-      { id: 'M06', name: 'Mocassim de Camurça', price: 239.00, category: 'Calçados', image: 'img/produto16.jpg' },
-      { id: 'M07', name: 'Cinto de Couro Fivela', price: 79.90, category: 'Acessórios', image: 'img/produto17.jpg' },
-      { id: 'M08', name: 'Bermuda de Sarja Azul', price: 109.00, category: 'Roupas', image: 'img/produto18.jpg' },
-      { id: 'M09', name: 'Óculos de Sol Aviador', price: 165.00, category: 'Acessórios', image: 'img/produto19.jpg' },
-      { id: 'M10', name: 'Blazer Casual Algodão', price: 399.90, category: 'Roupas', image: 'img/produto20.jpg' },
-    ];
-
-    const catalogo = document.getElementById('catalogo');
-    const search = document.getElementById('search');
-    const filter = document.getElementById('filter');
-    const price = document.getElementById('price');
-    const resultCount = document.getElementById('result-count');
-
-    function render() {
-      const term = search.value.toLowerCase();
-      const cat = filter.value;
-      const pr = price.value;
-
-      const filtrados = produtos.filter(p => {
-        const matchNome = p.name.toLowerCase().includes(term);
-        const matchCat = cat === 'all' || p.category === cat;
-        const matchPreco =
-          pr === 'all' ||
-          (pr === 'low' && p.price < 200) ||
-          (pr === 'mid' && p.price >= 200 && p.price <= 400) ||
-          (pr === 'high' && p.price > 400);
-        return matchNome && matchCat && matchPreco;
-      });
-
-      resultCount.textContent = `${filtrados.length} produto${filtrados.length !== 1 ? 's' : ''} encontrado${filtrados.length !== 1 ? 's' : ''}`;
-
-      catalogo.innerHTML = filtrados.map(p => `
-        <div class="bg-white border border-gray-100 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group opacity-0 translate-y-6"
-          data-id="${p.id}">
-          <div class="relative overflow-hidden">
-            <img src="${p.image}" class="w-full h-72 object-cover transition duration-500 group-hover:scale-110" alt="${p.name}">
-            <span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">${p.category}</span>
-          </div>
-          <div class="p-6 text-center">
-            <h5 class="text-xl font-semibold text-gray-800 mb-1">${p.name}</h5>
-            <p class="text-gray-500 mb-3 font-mono">R$ ${p.price.toFixed(2)}</p>
-            <button class="add-to-cart bg-gray-900 text-white font-medium py-2 px-6 rounded-full hover:bg-indigo-600 transition">
-              <i class="fas fa-cart-plus mr-2"></i> Adicionar
-            </button>
-          </div>
-        </div>
-      `).join('');
-
-      requestAnimationFrame(() => {
-        document.querySelectorAll('#catalogo > div').forEach((el, i) => {
-          setTimeout(() => {
-            el.classList.remove('opacity-0', 'translate-y-6');
-            el.classList.add('opacity-100', 'translate-y-0', 'transition-all', 'duration-700');
-          }, i * 50);
-        });
-      });
-    }
-
-    render();
-    search.addEventListener('input', render);
-    filter.addEventListener('change', render);
-    price.addEventListener('change', render);
-  </script>
+  <script src="js/colecoes.js"></script>
+  <script src="js/cart.js"></script>
 
   <style>
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
